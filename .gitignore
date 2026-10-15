@@ -1,0 +1,29 @@
+# Compiled binaries and object files
+*.o
+*.a
+*.so
+*.elf
+*.bin
+*.hex
+*.exe
+
+# Build output
+build/
+cmake-build-*/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Python virtual environments
+.venv/
+venv/
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Editor and operating system files
+.vscode/
+.idea/
+.DS_Store
+

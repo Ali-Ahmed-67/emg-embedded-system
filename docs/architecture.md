@@ -1,60 +1,59 @@
-# System Architecture
+## Hardware and Software Interfaces
 
-## Objective
+### EMG Sensor to STM32
 
-Develop an embedded system that takes surface EMG measurements,
-transfers the data to a Linux computer, and processes the measurements
-using a C++ application.
+The EMG sensor will provide an analogue output that can be sampled
+using the STM32 ADC.
 
-## Proposed Data Path
+The specific sensor output, voltage range, ADC configuration and
+sampling frequency must be established before implementation.
 
-EMG electrodes
-    -> EMG analogue front end
-    -> STM32 ADC
-    -> STM32 firmware
-    -> Serial communication
-    -> Linux C++ application
-    -> Data logging and visualisation
+The selected output must be compatible with the STM32 input range.
 
-## Component Responsibilities
+### STM32 to Host Computer
 
-### EMG Sensor
+The STM32 will transmit measurement data to the host computer over
+a serial connection, initially expected to use USB.
 
-A commercial EMG sensor module will initially provide the analogue
-signal conditioning required for muscle-activity measurements.
+The exact transport mechanism and data format will be determined
+when the STM32 development board is selected.
 
-The exact output used by the system remains to be decided.
+The communication interface should support reliable acquisition
+and straightforward debugging.
 
-If time allows I could decide to build my own sensor module.
+### Host Application
 
-### STM32 Firmware
+The C++ application will separate data reception from subsequent
+processing and visualisation.
 
-The firmware will eventually acquire measurements using the
-microcontroller's ADC and transmit the measurements to the host.
+This should allow recorded measurements to be analysed independently
+of the live acquisition system.
 
-Sampling behaviour, data representation and communication details
-will be decided during implementation.
+## Initial Design Decisions
 
-### Linux Application
+| Decision | Initial approach | Status |
+|---|---|---|
+| EMG analogue front end | MyoWare 2.0 | Planned |
+| Microcontroller | STM32 development board | To be selected |
+| Firmware language | C | Planned |
+| Host operating system | Ubuntu Linux | Available |
+| Host application language | C++ | Planned |
+| Signal analysis | Python | Planned |
+| Communication | Serial over USB | To be verified |
+| Data logging | CSV | Proposed |
+| Live visualisation | To be selected | Undecided |
 
-The host application will receive and validate incoming data.
+## Outstanding Engineering Questions
 
-Planned capabilities include data logging, signal processing and
-visualisation.
+Before implementing the acquisition system, determine:
 
-### Python Analysis
+- Which STM32 development board to use.
+- Which MyoWare output to sample.
+- Whether the selected output is appropriate for the intended
+  sampling and signal-processing requirements.
+- The required sampling frequency and ADC configuration.
+- How measurements will be represented and transmitted.
+- How the complete body-connected electrical setup will be
+  made appropriately safe.
 
-Python tools will be used to investigate recorded signals, explore
-digital filters and validate processing approaches.
-
-## Design Principles
-
-- Implement the system incrementally.
-- Keep hardware acquisition separate from host-side processing.
-- Test individual components before full integration.
-- Document design decisions and measured results.
-
-## Current Limitations
-
-The hardware has not yet been purchased, and no acquisition or
-communication performance has been measured.
+These decisions should be documented as the design develops.
