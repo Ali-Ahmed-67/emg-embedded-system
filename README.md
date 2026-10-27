@@ -8,7 +8,7 @@ This is a personal project designed to help me learn embedded firmware, DSP, Lin
 
 ## Planned Architecture
 
-The system will have five parts:
+The system will have four parts:
 
 1. An EMG sensor 
 2. An STM32 microcontroller that samples the signal and applies some signal processing
