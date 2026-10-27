@@ -6,20 +6,14 @@ The EMG sensor will provide an analogue output that can be sampled
 using the STM32 ADC.
 
 The specific sensor output, voltage range, ADC configuration and
-sampling frequency must be established before implementation.
+sampling frequency will be established.
 
-The selected output must be compatible with the STM32 input range.
+I plan to implement some DSP/other algorithms on the STM32 in C. This could also be implemented on the host computer, but I would like to practice programming in C with a low-memory system.
 
 ### STM32 to Host Computer
 
 The STM32 will transmit measurement data to the host computer over
-a serial connection, initially expected to use USB.
-
-The exact transport mechanism and data format will be determined
-when the STM32 development board is selected.
-
-The communication interface should support reliable acquisition
-and straightforward debugging.
+a serial connection, initially via USB.
 
 ### Host Application
 
@@ -34,12 +28,11 @@ of the live acquisition system.
 | Decision | Initial approach | Status |
 |---|---|---|
 | EMG analogue front end | MyoWare 2.0 | Planned |
-| Microcontroller | STM32 development board | To be selected |
+| Microcontroller | NUCLEO-F411RE | Planned |
 | Firmware language | C | Planned |
 | Host operating system | Ubuntu Linux | Available |
 | Host application language | C++ | Planned |
-| Signal analysis | Python | Planned |
-| Communication | Serial over USB | To be verified |
+| Communication | Serial over USB | Planned |
 | Data logging | CSV | Proposed |
 | Live visualisation | To be selected | Undecided |
 
